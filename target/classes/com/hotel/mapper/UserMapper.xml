@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotel.mapper.UserMapper">
+	<!-- 查询管理员 -->
+	<select id="queryAdmin" resultType="Admin">
+		select * from admin where
+		a_id>1
+	</select>
+	<!-- 查询管理员根据名字 -->
+	<select id="queryAdminByName" resultType="Admin">
+		select * from admin
+		where a_id > 1 and a_name like concat('%',#{a_name},'%')
+	</select>
+	<!-- 添加管理员 -->
+	<insert id="addAdmin" parameterType="Admin">
+		insert into admin
+		(a_name,a_pwd) values (#{a_name },#{a_pwd })
+	</insert>
+	<!-- 更新管理员 -->
+	<update id="updateAdminById" parameterType="Admin">
+		update admin set
+		a_name=#{a_name},a_pwd=#{a_pwd} where a_id=#{a_id}
+	</update>
+	<!-- 删除管理员 -->
+	<delete id="deleteAdminById" parameterType="Admin">
+		delete from admin
+		where a_id=#{a_id}
+	</delete>
+</mapper>
