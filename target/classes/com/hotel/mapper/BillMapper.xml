@@ -14,14 +14,34 @@
 		<!-- 一对多的关系 property: 指的是集合属性的值, ofType：指的是集合中元素的类型 -->
 		<collection property="bill" ofType="Bill">
 			<id column="b_id" property="b_id" />
-			<result column="b_price" property="b_price" />	
+			<result column="b_price" property="b_price" />
 		</collection>
 	</resultMap>
 
 	<select id="queryBill" resultType="Order">
 		select
-		o.r_num,o.o_checkin_time,o.o_checkout_time,o.oc_name,o.oc_phone,o.o_type,sum(b.b_price)
+		o.o_id,o.r_num,o.o_checkin_time,o.o_checkout_time,o.oc_name,o.oc_phone,o.o_type,sum(b.b_price)
 		total_price from `order` o left join bill b on o.o_id=b.o_id where
 		o.o_type not in (0,3) group by o.o_id order by o.o_checkin_time desc
 	</select>
+
+	<insert id="addBill" parameterType="Bill">
+		insert into bill
+		(b_name,b_num,b_price,b_time,o_id) values (#{b_name },#{b_num
+		},#{b_price },#{b_time },#{o_id })
+	</insert>
+
+	<select id="queryBillByOid" resultType="Bill">
+		select * from bill where
+		o_id = #{_o_id }
+	</select>
+
+	<select id="queryBillByRnum" resultType="Order">
+		select
+		o.o_id,o.r_num,o.o_checkin_time,o.o_checkout_time,o.oc_name,o.oc_phone,o.o_type,sum(b.b_price)
+		total_price from `order` o left join bill b on o.o_id=b.o_id where
+		o.o_type not in (0,3) and r_num = #{_r_num} group by o.o_id order by
+		o.o_checkin_time desc
+	</select>
+
 </mapper>

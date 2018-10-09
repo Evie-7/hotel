@@ -14,19 +14,18 @@
 <title>账单管理</title>
 <link rel="stylesheet" href="css/layui.css">
 <script src="layui.js"></script>
-<script src="jquery1.11.3.js"></script>
 </head>
 
 <body>
 	<div style="width: 100%; margin: 0 auto; padding-top: 30px;"
 		align="center">
-		<form class="layui-form" action="BillManageServlet?method=Query"
+		<form class="layui-form" action="BillController/queryOrderByRnum"
 			method="post" style="width: 100%;">
 			<div class="layui-form-item">
 				<div style="width: 300px">
 					<input type="text" name="r_num" required
 						lay-verify="required|number" placeholder="房间号" autocomplete="off"
-						class="layui-input" value="">
+						class="layui-input">
 				</div>
 				<br />
 				<div align="center">
@@ -66,28 +65,25 @@
 						<td>${BillInfo.oc_name }</td>
 						<td>${BillInfo.oc_phone }</td>
 						<td>${BillInfo.total_price }</td>
-						<td>
-							<%-- <c:if test="${BillInfo.o_type==4 }">
-								<c:out value="未缴费"></c:out>
-							</c:if> <c:if test="${BillInfo.o_type==1 }">
-								<c:out value="未缴费"></c:out>
+						<td><c:if test="${BillInfo.o_type==1 }">
+								<c:out value="入驻中，未缴费"></c:out>
 							</c:if> <c:if test="${BillInfo.o_type==2 }">
-								<c:out value="已缴费"></c:out>
-							</c:if> --%>
-						</td>
-						<td align="center">
-							<%-- <c:if test="${BillInfo.o_type==1 }">
+								<c:out value="已退房，已缴费"></c:out>
+							</c:if></td>
+						<td align="center"><c:if test="${BillInfo.o_type==1 }">
 								<a class="layui-btn"
-									href="BillManageServlet?method=Add&type=jump&o_id=${Bill.o_id }">记录</a>
-							</c:if> --%>
-						</td>
-						<td align="center"><a class="layui-btn" href="#">明细</a></td>
+									href="manager/bill_add.jsp?o_id=${BillInfo.o_id }">记录</a>
+							</c:if> <c:if test="${BillInfo.o_type==2 }">
+								<c:out value="已退房"></c:out>
+							</c:if></td>
+						<td align="center"><a class="layui-btn"
+							href="BillController/queryBillByOid?o_id=${BillInfo.o_id }">明细</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
-	<div id="demo3" align="right"></div>
+	<div id="laypage" align="right"></div>
 	<script>
 			layui.use('laydate', function() {
 				var laydate = layui.laydate;
@@ -109,20 +105,19 @@
 				  
 				  //执行一个laypage实例
 				  laypage.render({
-				    elem: 'demo3' //注意，这里的 test1 是 ID，不用加 # 号
-				    ,count: ${total } //数据总数，从服务端得到
-				    ,limit: 10
-				    ,curr: ${page }
-				    ,jump: function(obj, first){
+				    elem: 'laypage', //注意，这里的 test1 是 ID，不用加 # 号
+				    count: ${pager.totalRecord}, //数据总数，从服务端得到
+				    limit: ${pager.pageSize},
+				    curr: ${pager.pageNum},
+				    jump: function(obj, first){
 				        //得到了当前页，用于向服务端请求对应数据
 				        if (!first){
 				        	var curr = obj.curr;
-					        location.href ="${url }"+curr;
+					        location.href ='RoomController/queryRoom?pageNum='+curr;
 					        }
-				        
-				    }
-				    ,first: '首页'
-				    ,last: '尾页'
+				    },
+				    first: '首页',
+				    last: '尾页'
 				  });
 				});
 		</script>

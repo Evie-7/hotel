@@ -5,10 +5,23 @@ import java.util.List;
 
 public class Order {
 	// 订单
-	private int oc_id, r_num, o_type;
-	private String o_id, oc_name, oc_phone, oc_idnum, oc_sex, o_arriva_time, o_departure_time, r_type, o_people_num,
-			o_checkin_time, o_checkout_time;
-	private BigDecimal r_price, b_price, total_price;
+	private int oc_id;
+	private int r_num;
+	private int o_type;
+	private String o_id;
+	private String oc_name;
+	private String oc_phone;
+	private String oc_idnum;
+	private String oc_sex;
+	private String o_arriva_time;
+	private String o_departure_time;
+	private String r_type;
+	private String o_people_num;
+	private String o_checkin_time;
+	private String o_checkout_time;
+	private BigDecimal r_price;
+	private BigDecimal b_price;
+	private BigDecimal total_price;
 
 	List<Bill> bill;
 
@@ -155,7 +168,5 @@ public class Order {
 	public void setTotal_price(BigDecimal total_price) {
 		this.total_price = total_price;
 	}
-
-	
 
 }

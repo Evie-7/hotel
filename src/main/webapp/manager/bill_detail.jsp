@@ -32,25 +32,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="Detail" items="${Detail }">
+				<c:set var="sum" value="0"></c:set>
+				<c:forEach var="BillDetail" items="${BillDetail }">
 					<tr>
-						<td>${Detail.b_name }</td>
-						<td>${Detail.b_num }</td>
-						<td>${Detail.b_price }</td>
-						<td>${Detail.b_time }</td>
+						<td>${BillDetail.b_name }</td>
+						<td>${BillDetail.b_num }</td>
+						<td>${BillDetail.b_price }</td>
+						<td>${BillDetail.b_time }</td>
 					</tr>
+					<c:set var="sum" value="${sum+BillDetail.b_price }"></c:set>
 				</c:forEach>
-
 			</tbody>
 		</table>
-		<p align="right" style="padding: 50px">合计：${Sum }￥</p>
-		<c:if test="${msg==1 }">
-		<p align="center" style="padding-bottom: 50px">
-			<a class="layui-btn"
-				href="CheckOutServlet?method=Confirm&o_id=${o_id }">确认缴费</a>
-		</p>
-		</c:if>
+		<p align="right" style="padding: 50px">合计：${sum }￥</p>
 	</div>
 </body>
-
 </html>

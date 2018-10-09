@@ -2,15 +2,20 @@ package com.hotel.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.hotel.mapper.RoomMapper;
 import com.hotel.pojo.Room;
 import com.hotel.service.RoomService;
 
 public class RoomServiceImpl implements RoomService {
+	@Autowired
+	RoomMapper roomMapper;
 //	查询所有客房信息
 	@Override
 	public List<Room> queryRoom() {
 		// TODO Auto-generated method stub
-		return null;
+		return roomMapper.queryRoom();
 	}
 
 //	添加客房
@@ -38,7 +43,7 @@ public class RoomServiceImpl implements RoomService {
 	@Override
 	public List<Room> queryRoomByNum(Room room) {
 		// TODO Auto-generated method stub
-		return null;
+		return roomMapper.queryRoomByNum(room);
 	}
 
 }

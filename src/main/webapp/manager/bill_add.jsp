@@ -18,25 +18,25 @@
 <script type="text/javascript">
 layui.use('form', function(){
 	  var form = layui.form;
-	  form.on('submit(*)', function(data) {
-			console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+	  form.on('submit(add)', function(data) {
+			/* console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
 			console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
-			var data=[data.field];
-			console.log([data])
+			console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value} */
+			var data=JSON.stringify(data.field);
+			console.log(data)
 			$.ajax({
-				url : "BillManageServlet?method=Add&type=add",
+				url : "BillController/addBill",
 				type : "post",
-				data : {
-					msg : JSON.stringify(data)
-				},
+				data : data,
 				dataType : "json",
+				contentType : "application/json;charset=UTF-8",
 				success : function(data) {
 					 if (data == 1) {
 						layui.use('layer',function() {
 						 var layer = layui.layer;
 							layer.msg('登记成功！',{	time : 1500},
 							 function() {
-								window.location = "BillManageServlet?method=QueryAll";
+								window.location = "BillController/queryOrder";
 							});
 						});
 					}
@@ -57,7 +57,7 @@ layui.use('form', function(){
 				<div class="layui-input-block">
 					<input type="hidden" name="o_id" id="o_id" required
 						lay-verify="required" placeholder="" autocomplete="off"
-						class="layui-input" readonly="readonly" value="${o_id }">
+						class="layui-input" readonly="readonly" value="${param.o_id }">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -90,7 +90,7 @@ layui.use('form', function(){
 			</div>
 
 			<div class="layui-input-block">
-				<button class="layui-btn" lay-submit lay-filter="*">记录</button>
+				<button class="layui-btn" lay-submit lay-filter="add">记录</button>
 			</div>
 		</form>
 	</div>

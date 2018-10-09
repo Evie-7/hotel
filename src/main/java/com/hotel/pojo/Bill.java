@@ -1,117 +1,15 @@
 package com.hotel.pojo;
 
+import java.math.BigDecimal;
+
 public class Bill {
 	// 账单
-	private int b_id, b_num, o_id, oc_id, r_num, o_type;
-	private String b_name, oc_name, oc_sex, oc_phone, r_type, o_arriva_time, o_departure_time, o_checkin_time,
-			o_checkout_time, o_people_num, oc_idnum, b_time;
-	private float price,b_price;
-
-	public int getOc_id() {
-		return oc_id;
-	}
-
-	public void setOc_id(int oc_id) {
-		this.oc_id = oc_id;
-	}
-
-	public int getR_num() {
-		return r_num;
-	}
-
-	public void setR_num(int r_num) {
-		this.r_num = r_num;
-	}
-
-	public int getO_type() {
-		return o_type;
-	}
-
-	public void setO_type(int o_type) {
-		this.o_type = o_type;
-	}
-
-	public String getOc_name() {
-		return oc_name;
-	}
-
-	public void setOc_name(String oc_name) {
-		this.oc_name = oc_name;
-	}
-
-	public String getOc_sex() {
-		return oc_sex;
-	}
-
-	public void setOc_sex(String oc_sex) {
-		this.oc_sex = oc_sex;
-	}
-
-	public String getOc_phone() {
-		return oc_phone;
-	}
-
-	public void setOc_phone(String oc_phone) {
-		this.oc_phone = oc_phone;
-	}
-
-	public String getR_type() {
-		return r_type;
-	}
-
-	public void setR_type(String r_type) {
-		this.r_type = r_type;
-	}
-
-	public String getO_arriva_time() {
-		return o_arriva_time;
-	}
-
-	public void setO_arriva_time(String o_arriva_time) {
-		this.o_arriva_time = o_arriva_time;
-	}
-
-	public String getO_departure_time() {
-		return o_departure_time;
-	}
-
-	public void setO_departure_time(String o_departure_time) {
-		this.o_departure_time = o_departure_time;
-	}
-
-	public String getO_checkin_time() {
-		return o_checkin_time;
-	}
-
-	public void setO_checkin_time(String o_checkin_time) {
-		this.o_checkin_time = o_checkin_time;
-	}
-
-	public String getO_checkout_time() {
-		return o_checkout_time;
-	}
-
-	public void setO_checkout_time(String o_checkout_time) {
-		this.o_checkout_time = o_checkout_time;
-	}
-
-	public String getO_people_num() {
-		return o_people_num;
-	}
-
-	public void setO_people_num(String o_people_num) {
-		this.o_people_num = o_people_num;
-	}
-
-	public String getOc_idnum() {
-		return oc_idnum;
-	}
-
-	public void setOc_idnum(String oc_idnum) {
-		this.oc_idnum = oc_idnum;
-	}
-
-	
+	private int b_id;
+	private int b_num;
+	private int o_id;
+	private String b_name;
+	private String b_time;
+	private BigDecimal b_price;
 
 	public int getB_id() {
 		return b_id;
@@ -145,22 +43,6 @@ public class Bill {
 		this.b_name = b_name;
 	}
 
-	public float getB_price() {
-		return b_price;
-	}
-
-	public void setB_price(float b_price) {
-		this.b_price = b_price;
-	}
-
-	public float getPrice() {
-		return price;
-	}
-
-	public void setPrice(float price) {
-		this.price = price;
-	}
-
 	public String getB_time() {
 		return b_time;
 	}
@@ -168,4 +50,13 @@ public class Bill {
 	public void setB_time(String b_time) {
 		this.b_time = b_time;
 	}
+
+	public BigDecimal getB_price() {
+		return b_price;
+	}
+
+	public void setB_price(BigDecimal b_price) {
+		this.b_price = b_price;
+	}
+
 }

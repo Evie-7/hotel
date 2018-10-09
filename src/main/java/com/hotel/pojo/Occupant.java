@@ -2,9 +2,20 @@ package com.hotel.pojo;
 
 public class Occupant {
 	// 入住人员信息
-	private int oc_id, o_id, r_num, o_type;
-	private String oc_name, oc_sex, oc_phone, r_type, o_arriva_time, o_departure_time, o_checkin_time, o_checkout_time,
-			o_people_num, oc_idnum;
+	private int oc_id;
+	private int o_id;
+	private int r_num;
+	private int o_type;
+	private String oc_name;
+	private String oc_sex;
+	private String oc_phone;
+	private String r_type;
+	private String o_arriva_time;
+	private String o_departure_time;
+	private String o_checkin_time;
+	private String o_checkout_time;
+	private String o_people_num;
+	private String oc_idnum;
 
 	public int getO_id() {
 		return o_id;
@@ -85,7 +96,6 @@ public class Occupant {
 	public void setOc_id(int oc_id) {
 		this.oc_id = oc_id;
 	}
-
 
 	public String getOc_name() {
 		return oc_name;
